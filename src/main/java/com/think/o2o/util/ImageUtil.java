@@ -70,7 +70,7 @@ public class ImageUtil {
         return originalFileName.substring(originalFileName.lastIndexOf("."));
     }
 
-    private static String getRandomFileName() {
+    public static String getRandomFileName() {
         int randNum = random.nextInt(89999) + 10000;
         String nowTimeString = simpleDateFormat.format(new Date());
         return nowTimeString + randNum;

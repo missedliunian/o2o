@@ -29,14 +29,14 @@ public class ShopServiceTest extends BaseTest {
         shop.setOwner(owner);
         shop.setArea(area);
         shop.setShopCategory(shopCategory);
-        shop.setShopName("测试一下店铺3");
-        shop.setShopDesc("test啊3");
-        shop.setShopAddr("店铺地址3");
-        shop.setPhone("13555555553");
+        shop.setShopName("测试一下店铺4");
+        shop.setShopDesc("test啊4");
+        shop.setShopAddr("店铺地址4");
+        shop.setPhone("13555555554");
         shop.setPriority(1);
         shop.setAdvice("审核中");
         File shopImg = new File("D:/download/image.jpg");
         ShopExecution shopExecution = shopService.addShop(shop, shopImg);
-        System.out.println(shopExecution);
+//        System.out.println(shopExecution);
     }
 }
