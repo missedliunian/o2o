@@ -18,6 +18,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/superadmin")
 public class AreaController {
+    public static void main(String[] args){
+        AreaController areaController = new AreaController();
+        areaController.listArea();
+    }
     Logger logger = LoggerFactory.getLogger(AreaController.class);
 
     @Autowired

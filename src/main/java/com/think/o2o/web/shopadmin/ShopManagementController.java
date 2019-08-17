@@ -58,30 +58,23 @@ public class ShopManagementController {
         }
         if (shop != null && shopImg != null) {
             PersonInfo owner = new PersonInfo();
+            //TODO 店铺拥有者
             owner.setUserId(1L);
             shop.setOwner(owner);
-            File shopImgFile = new File(PathUtil.getImgBasePath() + ImageUtil.getRandomFileName());
+            ShopExecution shopExecution = null;
             try {
-                shopImgFile.createNewFile();
+                shopExecution = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
+                    modelMap.put("success", true);
+                } else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", shopExecution.getStateInfo());
+                }
             } catch (IOException e) {
                 modelMap.put("success", false);
                 modelMap.put("errMsg", e.getMessage());
-                return modelMap;
             }
-            try {
-                inputStreamToFile(shopImg.getInputStream(), shopImgFile);
-            } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", e.getMessage());
-                return modelMap;
-            }
-            ShopExecution shopExecution = shopService.addShop(shop, shopImgFile);
-            if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
-                modelMap.put("success", true);
-            } else {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", shopExecution.getStateInfo());
-            }
+
             return modelMap;
 
         } else {
@@ -91,32 +84,4 @@ public class ShopManagementController {
         }
     }
 
-    private static void inputStreamToFile(InputStream inputStream, File file) {
-        FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(file);
-            int byteRead;
-            byte[] buffer = new byte[1024];
-            while ((byteRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, byteRead);
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException("调用inputStreamToFile产生异常:" + e.getMessage());
-        } finally {
-
-            try {
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException("inputStreamToFile关闭产生异常:" + e.getMessage());
-            }
-
-        }
-
-    }
 }

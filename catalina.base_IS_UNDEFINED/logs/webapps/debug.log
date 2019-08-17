@@ -1,3 +1,0 @@
-2019-08-15 08:32:13.589 [main] DEBUG com.think.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, shop_addr=?, phone=?, shop_img=?, priority=?, last_edit_time=?, enable_status=?, advice=? where shop_id=? 
-2019-08-15 08:32:13.625 [main] DEBUG com.think.o2o.dao.ShopDao.updateShop - ==> Parameters: 更新(String), 更新(String), 更新(String), 更新(String), 更新图片(String), 1(Integer), 2019-08-15 08:32:13.248(Timestamp), 1(Integer), 审核中(String), 40(Long)
-2019-08-15 08:32:13.629 [main] DEBUG com.think.o2o.dao.ShopDao.updateShop - <==    Updates: 1
