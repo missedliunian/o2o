@@ -8,7 +8,7 @@ public class ShopCategory {
     private String shopCategoryDesc;
     private String shopCategoryImg;
     private Integer priority;
-    private Date CreateTime;
+    private Date createTime;
     private Date lastEditTime;
     private ShopCategory parent;
 
@@ -53,11 +53,11 @@ public class ShopCategory {
     }
 
     public Date getCreateTime() {
-        return CreateTime;
+        return createTime;
     }
 
     public void setCreateTime(Date createTime) {
-        CreateTime = createTime;
+        this.createTime = createTime;
     }
 
     public Date getLastEditTime() {
@@ -74,5 +74,19 @@ public class ShopCategory {
 
     public void setParent(ShopCategory parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopCategory{" +
+                "shopCategoryId=" + shopCategoryId +
+                ", shopCategoryName='" + shopCategoryName + '\'' +
+                ", shopCategoryDesc='" + shopCategoryDesc + '\'' +
+                ", shopCategoryImg='" + shopCategoryImg + '\'' +
+                ", priority=" + priority +
+                ", createTime=" + createTime +
+                ", lastEditTime=" + lastEditTime +
+                ", parent=" + parent +
+                '}';
     }
 }

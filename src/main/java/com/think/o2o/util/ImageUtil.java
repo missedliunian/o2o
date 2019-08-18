@@ -83,4 +83,18 @@ public class ImageUtil {
                 .outputQuality(0.8f)
                 .toFile("D:/download/imageNew.jpg");
     }
+
+    //根据storePath是文件还是目录然后删除文件或目录
+    public static void deleteFileOrPath(String storePath) {
+        File fileOrPath = new File(PathUtil.getImgBasePath() + storePath);
+        if (fileOrPath.exists()) {
+            if (fileOrPath.isDirectory()) {
+                File[] files = fileOrPath.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    files[i].delete();
+                }
+            }
+            fileOrPath.delete();
+        }
+    }
 }

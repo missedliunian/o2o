@@ -39,8 +39,6 @@
                         <div class="item-title label">商铺分类</div>
                         <div class="item-input">
                             <select id="shop-category">
-                                <option>Male</option>
-                                <option>Female</option>
                             </select>
                         </div>
                     </div>
@@ -53,8 +51,6 @@
                         <div class="item-title label">所属区域</div>
                         <div class="item-input">
                             <select id="area">
-                                <option>Male</option>
-                                <option>Female</option>
                             </select>
                         </div>
                     </div>
@@ -105,14 +101,39 @@
                 </div>
             </li>
 
+            <li>
+                <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title label">验证码</div>
+                        <input type="text" id="j_captcha" placeholder="验证码">
+                        <div class="item-input">
+                            <img onclick="changeVerifyCode(this)" id="captcha_img" title="点击更换" src="../Kaptcha">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
         </ul>
     </div>
     <div class="content-block">
         <div class="row">
             <div class="col-50"><a href="#" class="button button-big button-fill button-danger">返回</a></div>
-            <div class="col-50"><a href="#" class="button button-big button-fill button-success" id="submit">提交</a></div>
+            <div class="col-50"><a href="#" class="button button-big button-fill button-success" id="submit">提交</a>
+            </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script type='text/javascript'
+        src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript'
+        src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript'
+        src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js'
+        charset='utf-8'></script>
+<script type="text/javascript" src="../resources/js/shop/shopoperation.js" charset="UTF-8"></script>
 </body>
+
 </html>
