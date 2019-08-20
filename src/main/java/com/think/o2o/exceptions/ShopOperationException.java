@@ -1,4 +1,4 @@
-package com.think.o2o.exceptios;
+package com.think.o2o.exceptions;
 
 public class ShopOperationException extends RuntimeException {
     //TODO serialVersionUid ???

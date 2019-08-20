@@ -4,7 +4,7 @@ import com.think.o2o.dao.ShopDao;
 import com.think.o2o.dto.ShopExecution;
 import com.think.o2o.entity.Shop;
 import com.think.o2o.enums.ShopStateEnum;
-import com.think.o2o.exceptios.ShopOperationException;
+import com.think.o2o.exceptions.ShopOperationException;
 import com.think.o2o.service.ShopService;
 import com.think.o2o.util.ImageUtil;
 import com.think.o2o.util.PageCalculator;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;

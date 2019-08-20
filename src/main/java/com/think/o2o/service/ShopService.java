@@ -2,9 +2,8 @@ package com.think.o2o.service;
 
 import com.think.o2o.dto.ShopExecution;
 import com.think.o2o.entity.Shop;
-import com.think.o2o.exceptios.ShopOperationException;
+import com.think.o2o.exceptions.ShopOperationException;
 
-import java.io.File;
 import java.io.InputStream;
 
 public interface ShopService {
