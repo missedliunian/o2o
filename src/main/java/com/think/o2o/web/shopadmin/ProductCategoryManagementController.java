@@ -73,7 +73,7 @@ public class ProductCategoryManagementController {
     }
 
 
-    @RequestMapping(value = "/removeproductcategory", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteproductcategory", method = RequestMethod.POST)
     @ResponseBody
     private Map<String, Object> removeProductCategory(Long productCategoryId,
                                                       HttpServletRequest request) {

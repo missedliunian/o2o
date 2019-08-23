@@ -1,12 +1,14 @@
 package com.think.o2o.service;
 
 import com.think.o2o.BaseTest;
+import com.think.o2o.dto.ImageHolder;
 import com.think.o2o.dto.ShopExecution;
 import com.think.o2o.entity.Area;
 import com.think.o2o.entity.PersonInfo;
 import com.think.o2o.entity.Shop;
 import com.think.o2o.entity.ShopCategory;
 import com.think.o2o.enums.ShopStateEnum;
+import com.think.o2o.exceptions.ShopOperationException;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class ShopServiceTest extends BaseTest {
     @Autowired
@@ -25,49 +28,51 @@ public class ShopServiceTest extends BaseTest {
     @Test
     public void testGetShopList() {
         Shop shopCondition = new Shop();
-        ShopCategory shopCategory = new ShopCategory();
-        shopCategory.setShopCategoryId(22L);
-        shopCondition.setShopCategory(shopCategory);
-        ShopExecution shopExecution = shopService.getShopList(shopCondition, 2, 3);
-        System.out.println(shopExecution.getShopList().size());
-        System.out.println(shopExecution.getCount());
+        ShopCategory sc = new ShopCategory();
+        sc.setShopCategoryId(1L);
+        shopCondition.setShopCategory(sc);
+        ShopExecution se = shopService.getShopList(shopCondition, 2, 2);
+        System.out.println("店铺列表数为：" + se.getShopList().size());
+        System.out.println("店铺总数为：" + se.getCount());
     }
 
     @Test
     @Ignore
-    public void testModifyShop() throws FileNotFoundException {
+    public void testModifyShop() throws ShopOperationException, FileNotFoundException {
         Shop shop = new Shop();
         shop.setShopId(1L);
         shop.setShopName("修改后的店铺名称");
         File shopImg = new File("D:/download/girl.jpg");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.modifyShop(shop, is, "girl.jpg");
-        System.out.println(shopExecution.getShop().getShopImg());
+        ImageHolder imageHolder = new ImageHolder("girl.jpg", is);
+        ShopExecution shopExecution = shopService.modifyShop(shop, imageHolder);
+        System.out.println("新的图片地址为：" + shopExecution.getShop().getShopImg());
     }
-
 
     @Test
     @Ignore
-    public void testAddShop() throws FileNotFoundException {
+    public void testAddShop() throws ShopOperationException, FileNotFoundException {
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
         Area area = new Area();
         ShopCategory shopCategory = new ShopCategory();
-        owner.setUserId(8L);
-        area.setAreaId(3);
-        shopCategory.setShopCategoryId(10L);
+        owner.setUserId(1L);
+        area.setAreaId(2);
+        shopCategory.setShopCategoryId(1L);
         shop.setOwner(owner);
         shop.setArea(area);
         shop.setShopCategory(shopCategory);
-        shop.setShopName("测试一下店铺4");
-        shop.setShopDesc("test啊4");
-        shop.setShopAddr("店铺地址4");
-        shop.setPhone("13555555554");
-        shop.setPriority(1);
+        shop.setShopName("测试的店铺3");
+        shop.setShopDesc("test3");
+        shop.setShopAddr("test3");
+        shop.setPhone("test3");
+        shop.setCreateTime(new Date());
+        shop.setEnableStatus(0);
         shop.setAdvice("审核中");
-        File shopImg = new File("D:/download/image.jpg");
+        File shopImg = new File("D:/download/girl.jpg");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.addShop(shop, is, shopImg.getName());
-//        System.out.println(shopExecution);
+        ImageHolder imageHolder = new ImageHolder(shopImg.getName(), is);
+        ShopExecution se = shopService.addShop(shop, imageHolder);
+        assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
     }
 }
